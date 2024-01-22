@@ -1,0 +1,20 @@
+# Especifica a imagem base do Node.js
+FROM node:18
+
+# Define o diretório de trabalho dentro da imagem
+WORKDIR /usr/src/app
+
+# Copia os arquivos 'package.json' e 'package-lock.json' (se disponível)
+COPY package*.json ./
+
+# Instala as dependências do projeto
+RUN npm install
+
+# Copia os arquivos do projeto para o diretório de trabalho na imagem
+COPY . .
+
+# Expõe a porta que a aplicação React usa
+EXPOSE 3000
+
+# Comando para executar a aplicação React
+CMD ["npm", "start"]

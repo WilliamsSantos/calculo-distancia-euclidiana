@@ -1,0 +1,38 @@
+.custom-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 25px auto;
+  overflow-y: auto;
+}
+
+.modal-title {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-list {
+  overflow-y: scroll;
+  list-style-type: decimal;
+  padding-left: 40px;
+  margin-bottom: 20px;
+}
+
+.modal-list-item {
+  margin-bottom: 15px;
+  color: #555;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-list-item b {
+  color: #007bff;
+}
+
+.no-clients-message {
+  text-align: center;
+  color: #888;
+}

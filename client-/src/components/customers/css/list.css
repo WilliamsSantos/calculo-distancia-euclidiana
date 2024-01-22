@@ -1,0 +1,53 @@
+.client-list-container {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.client-search-container {
+  margin-bottom: 20px;
+}
+
+.client-search-input {
+  width: 97%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-top: 25px;
+}
+
+.client-list-table {
+  width: 100%;
+  border-collapse: collapse; /* Remove espaço entre as células */
+}
+
+.client-list-table thead {
+  background-color: #f4f4f4; /* Cor de fundo do cabeçalho */
+}
+
+.client-list-table th, 
+.client-list-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd; /* Linha separadora */
+}
+
+.client-list-table th {
+  font-weight: bold;
+}
+
+.no-clients-message {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .client-list-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .client-search-input {
+    font-size: 14px;
+  }
+}
