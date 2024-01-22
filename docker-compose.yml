@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  facilita_juridico_app:
+    container_name: facilita_juridico_app
+    build: 
+      context: ./server
+      dockerfile: Dockerfile.node
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    depends_on:
+      - facilita_juridico_postgres
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - APP_PORT=${APP_PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+    networks:
+      - facilita_juridico_network
+
+  facilita_juridico_postgres:
+    container_name: facilita_juridico_postgres
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./server/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    networks:
+      - facilita_juridico_network
+
+  facilita_juridico_pgadmin:
+    container_name: facilita_juridico_pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PG_MYADMIN_USER}
+      - PGADMIN_DEFAULT_PASSWORD=${PG_MYADMIN_PASSWORD}
+    ports:
+      - "${PG_MYADMIN_PORT}:80"
+    depends_on:
+      - facilita_juridico_postgres
+    networks:
+      - facilita_juridico_network
+
+  facilita_juridico_react:
+    container_name: facilita_juridico_react
+    build:
+      context: ./client
+      dockerfile: Dockerfile.react
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - facilita_juridico_app
+    ports:
+      - "${REACT_APP_API_PORT}:3000"
+    environment:
+      - REACT_APP_API_HOST=${APP_HOST}
+      - REACT_APP_API_PORT=${APP_PORT}
+    networks:
+      - facilita_juridico_network
+
+networks:
+  facilita_juridico_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

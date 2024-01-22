@@ -1,0 +1,29 @@
+# Dependências
+server/node_modules/
+client/node_modules/
+
+# Arquivos de compilação
+client/build/
+client/dist/
+*.log
+
+# Arquivos de ambiente
+.env
+
+package-lock.json
+
+# Outros arquivos e diretórios
+.DS_Store
+Thumbs.db
+
+# Arquivos específicos do editor/IDE
+.idea/
+*.sublime-workspace
+*.sublime-project
+.vscode/
+
+# Arquivos de cache
+*.pyc
+*pyo
+*~
+/__pycache__/
