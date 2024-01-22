@@ -65,7 +65,8 @@ Ao desenvolver essa segunda parte, altere a rota de cadastro e visualização pa
 #### Info sobre o projeto
 - Você pode ter acesso ao sql aqui: [SQL INICIAL](server/database/init.sql)
 
-- O sistema roda dentro do docker então na pasta raiz rode:
+- O sistema roda dentro do docker então na pasta raiz do projeto execute:
+    - cp .env.example .env
     - docker-compose up -d
 
 Com isso será disponibilizado 4 containers:
@@ -74,7 +75,6 @@ Com isso será disponibilizado 4 containers:
 2) <b>Banco de Dados (postgresql):</b> facilita_juridico_postgres
 3) <b>Client React:</b> facilita_juridico_react
 4) <b>PgAdmin:</b> facilita_juridico_pgadmin
-
 
 O sistema está rodando na porta:
 ```curl
