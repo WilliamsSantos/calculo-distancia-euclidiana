@@ -382,3 +382,24 @@ const route = calculateRoute(startingPoint.lat, startingPoint.lon, clients)
   sequência ótima de visitação partindo de Chicago.
 </p>
 
+
+### Página listagem clientes:
+![Alt text](image.png)
+
+### Modal Rotas Otimizadas:
+![Alt text](image-2.png)
+
+### Atualiza Cliente:
+![Alt text](image-3.png)
+
+### Cria Cliente
+![Alt text](image-4.png)
+
+### Excluir Cliente
+![Alt text](image-5.png)
+
+### Visualiza 1 client:
+![Alt text](image-6.png)
+
+### Busca:
+![Alt text](image-7.png)
