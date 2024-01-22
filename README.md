@@ -255,3 +255,130 @@ Response:
     ]
 }
 ```
+</br>
+
+<h1>Documentação Técnica: Cálculo de Rota para Clientes</h1>
+<h2>Visão Geral</h2>
+<p>
+  O módulo <code>nearestNeighbor</code> fornece uma funcionalidade para calcular
+  a rota ótima através de um conjunto de pontos (clientes), partindo de uma
+  localização inicial. O objetivo é visitar todos os clientes no menor caminho
+  possível, com base na distância euclidiana entre os pontos.
+</p>
+<h2>Funções</h2>
+<h3>1. <code>calculateDistance</code></h3>
+<ul>
+  <li>
+    <p>
+      <strong>Descrição:</strong> Calcula a distância euclidiana entre dois
+      pontos.
+    </p>
+  </li>
+  <li>
+    <p><strong>Entradas:</strong></p>
+    <ul>
+      <li>
+        <code>pointA</code>: Um objeto representando um ponto (cliente) com
+        latitude (<code>lat</code>) e longitude (<code>lon</code>).
+      </li>
+      <li><code>pointB</code>: Um objeto similar ao <code>pointA</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      <strong>Retorno:</strong> A distância euclidiana entre
+      <code>pointA</code> e <code>pointB</code>.
+    </p>
+  </li>
+  <li>
+    <p>
+      <strong>Cálculo:</strong> A função calcula a raiz quadrada da soma dos
+      quadrados da diferença entre as latitudes e as longitudes dos dois pontos.
+      A fórmula é a seguinte:
+    </p>
+
+![Cálculo](image-1.png)
+
+  </li>
+</ul>
+<h3>2. <code>findClosestClientIndex</code></h3>
+<ul>
+  <li>
+    <strong>Descrição:</strong> Encontra o índice do cliente mais próximo da
+    localização atual.
+  </li>
+  <li>
+    <strong>Entradas:</strong>
+    <ul>
+      <li>
+        <code>currentLocation</code>: A localização atual com latitude e
+        longitude.
+      </li>
+      <li>
+        <code>clientsToVisit</code>: Um array de clientes ainda não visitados.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Retorno:</strong> O índice do cliente mais próximo no array
+    <code>clientsToVisit</code>.
+  </li>
+  <li>
+    <strong>Funcionamento:</strong> A função percorre o array
+    <code>clientsToVisit</code>, utilizando <code>calculateDistance</code> para
+    encontrar o cliente mais próximo da <code>currentLocation</code>. Se o
+    cliente mais próximo for encontrado, seu índice no array é retornado.
+  </li>
+</ul>
+<h3>3. <code>calculateRoute</code></h3>
+<ul>
+  <li>
+    <strong>Descrição:</strong> Calcula a rota ótima para visitar um conjunto de
+    clientes.
+  </li>
+  <li>
+    <strong>Entradas:</strong>
+    <ul>
+      <li>
+        <code>startX</code> e <code>startY</code>: Coordenadas iniciais
+        (latitude e longitude) de onde começar a rota.
+      </li>
+      <li>
+        <code>clients</code>: Um array de objetos cliente, cada um com latitude
+        (<code>lat</code>) e longitude (<code>lon</code>).
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Retorno:</strong> Um array representando a rota ótima, com cada
+    elemento sendo um cliente do array <code>clients</code>.
+  </li>
+  <li>
+    <strong>Funcionamento:</strong> A função inicia na localização definida por
+    <code>startX</code> e <code>startY</code>, e em cada passo, utiliza
+    <code>findClosestClientIndex</code> para encontrar o cliente mais próximo
+    ainda não visitado. Esse cliente é então adicionado à rota, e a localização
+    atual é atualizada para a localização desse cliente. O processo se repete
+    até que todos os clientes tenham sido visitados.
+  </li>
+</ul>
+<h2>Exemplo de Uso</h2>
+
+```javascript
+
+const clients = [
+{ lat: 40.7128, lon: -74.0060 }, // Cliente em Nova York
+{ lat: 34.0522, lon: -118.2437 }, // Cliente em Los Angeles
+// ...outros clientes
+];
+
+const startingPoint = { lat: 41.8781, lon: -87.6298 }; // Iniciar em Chicago
+
+const route = calculateRoute(startingPoint.lat, startingPoint.lon, clients)
+```
+
+<p>
+  Neste exemplo, <code>route</code> será um array dos clientes ordenados pela
+  sequência ótima de visitação partindo de Chicago.
+</p>
+
