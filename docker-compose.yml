@@ -55,10 +55,10 @@ services:
   facilita_juridico_react:
     container_name: facilita_juridico_react
     build:
-      context: ./client
+      context: ./front
       dockerfile: Dockerfile.react
     volumes:
-      - ./client:/usr/src/app
+      - ./front:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - facilita_juridico_app
